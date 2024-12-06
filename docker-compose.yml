@@ -1,0 +1,40 @@
+version: '3.7'
+
+services:
+  keto-migrate:
+    image: oryd/keto:latest
+    command: migrate -c /etc/config/keto/keto.yml up -y
+    volumes:
+      - type: bind
+        source: ./config
+        target: /etc/config/keto
+    environment:
+      - LOG_LEVEL=debug
+      - DSN=postgres://user:secret@postgres-keto:5432/keto?sslmode=disable&max_conns=20&max_idle_conns=4
+    restart: on-failure
+    depends_on:
+      - postgres-keto
+
+  keto:
+    image: oryd/keto:latest
+    volumes:
+      - type: bind
+        source: ./config
+        target: /etc/config/keto
+    ports:
+      - "4466:4466"
+      - "4467:4467"
+    depends_on:
+      - keto-migrate
+    environment:
+      - DSN=postgres://user:secret@postgres-keto:5432/keto?sslmode=disable&max_conns=20&max_idle_conns=4
+    command: serve -c /etc/config/keto/keto.yml all
+
+  postgres-keto:
+    image: postgres:16
+    ports:
+      - "5435:5432"
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=keto

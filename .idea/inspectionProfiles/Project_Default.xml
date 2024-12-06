@@ -1,0 +1,29 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="Eslint" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredPackages">
+        <value>
+          <list size="6">
+            <item index="0" class="java.lang.String" itemvalue="sentry-sdk" />
+            <item index="1" class="java.lang.String" itemvalue="wcwidth" />
+            <item index="2" class="java.lang.String" itemvalue="flake8-functions" />
+            <item index="3" class="java.lang.String" itemvalue="mr-proper" />
+            <item index="4" class="java.lang.String" itemvalue="dlint" />
+            <item index="5" class="java.lang.String" itemvalue="google-cloud-storage" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="apps.supervisor.logic.facades.position_unit.create_model_instanse" />
+          <option value="apps.management.api.v1.viewsets.job_title__create" />
+          <option value="server.middleware.shared_auth.*" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

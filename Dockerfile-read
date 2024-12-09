@@ -1,0 +1,14 @@
+FROM oryd/keto:latest
+
+USER root
+
+COPY ./config /etc/config/keto
+COPY entrypoint-read.sh /usr/local/bin/entrypoint-read.sh
+
+RUN chmod +x /usr/local/bin/entrypoint-read.sh
+RUN mkdir -p /var/lib/sqlite && touch /var/lib/sqlite/db.sqlite && chown -R ory:ory /var/lib/sqlite
+
+USER ory
+RUN keto migrate -c /etc/config/keto/keto-read.yml up -y
+
+ENTRYPOINT ["/usr/local/bin/entrypoint-read.sh"]

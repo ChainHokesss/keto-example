@@ -1,0 +1,15 @@
+version: v0.7.0-alpha.1
+
+dsn: postgresql://keto_db_xs7x_user:kZIaLT4f7ZK2jjbLnIcohTivE13qSgqj@dpg-ctb3mdggph6c73etutq0-a.oregon-postgres.render.com/keto_db_xs7x
+
+log:
+  level: debug
+
+namespaces:
+  - name: app
+    id: 1
+
+serve:
+  write:
+    host: 0.0.0.0
+    port: 10000
